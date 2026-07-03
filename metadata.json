@@ -1,0 +1,6 @@
+{
+  "name": "Tally BMS",
+  "description": "Unified business management platform for Tally Prime, extending accounting into automated reminders, CRM, and sales team workflows.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

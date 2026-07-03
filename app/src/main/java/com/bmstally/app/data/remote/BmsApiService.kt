@@ -103,6 +103,21 @@ interface BmsApiService {
 
     @GET("orders")
     suspend fun getOrders(): Response<List<Order>>
+
+    @GET("api/reports/monthly-summary")
+    suspend fun getMonthlySummary(@Query("year") year: Int, @Query("company_guid") companyGuid: String): Response<List<MonthlySummary>>
+
+    @GET("ledger/deleted/history")
+    suspend fun getDeleteHistory(): Response<List<DeleteHistoryRecord>>
+
+    @DELETE("users/{id}")
+    suspend fun deleteUser(@Path("id") id: String): Response<Unit>
+
+    @POST("request-to-admin")
+    suspend fun sendRequest(@Body message: Map<String, String>): Response<Map<String, Any>>
+
+    @GET("admin/requests")
+    suspend fun getAdminRequests(): Response<List<UserRequest>>
 }
 
 data class LoginRequest(

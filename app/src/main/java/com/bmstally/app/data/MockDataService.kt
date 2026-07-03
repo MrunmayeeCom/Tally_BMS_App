@@ -276,6 +276,58 @@ object MockDataService {
 
     fun getOrders(): List<Order> = _orders.toList()
 
+    private val _deleteHistory = listOf(
+        DeleteHistoryRecord(1, "ledger", "ABC Enterprises", "Company 1", "2026-06-20 10:30:00"),
+        DeleteHistoryRecord(2, "voucher", "INV-005", "Company 1", "2026-06-19 15:45:00"),
+        DeleteHistoryRecord(3, "ledger", "XYZ Traders", "Company 1", "2026-06-18 09:15:00"),
+        DeleteHistoryRecord(4, "voucher", "PMT-003", "Company 2", "2026-06-17 14:20:00"),
+        DeleteHistoryRecord(5, "ledger", "PQR Suppliers", "Company 2", "2026-06-16 11:00:00"),
+        DeleteHistoryRecord(6, "voucher", "REC-002", "Company 1", "2026-06-15 16:30:00"),
+        DeleteHistoryRecord(7, "ledger", "LMN Brothers", "Company 1", "2026-06-14 08:45:00"),
+        DeleteHistoryRecord(8, "voucher", "JRN-001", "Company 2", "2026-06-13 12:10:00")
+    )
+
+    fun getDeleteHistory(): List<DeleteHistoryRecord> = _deleteHistory.toList()
+
+    fun restoreDeleteHistory(id: Int): Boolean = true
+
+    private var _requests = mutableListOf(
+        UserRequest(1, "Rahul Sharma", "rahul@tally.com", "Need access to Sales ledger for monthly reporting", "2026-06-22 10:30 AM"),
+        UserRequest(2, "Priya Patel", "priya@tally.com", "Requesting permission to view Purchase vouchers", "2026-06-21 03:15 PM"),
+        UserRequest(3, "Amit Singh", "amit@tally.com", "Please add me to the Inventory module", "2026-06-20 09:45 AM"),
+        UserRequest(4, "Sneha Reddy", "sneha@tally.com", "Need access to Outstanding reports for client follow-ups", "2026-06-19 02:00 PM")
+    )
+
+    fun getRequests(): List<UserRequest> = _requests.toList()
+
+    fun sendRequest(message: String): UserRequest {
+        val newId = (_requests.maxOfOrNull { it.id } ?: 0) + 1
+        val req = UserRequest(newId, "Current User", "user@company.com", message, "Just now")
+        _requests = (listOf(req) + _requests).toMutableList()
+        return req
+    }
+
+    private fun generateMonthlyData(year: Int): List<MonthlySummary> {
+        val monthNames = listOf("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+        return monthNames.mapIndexed { i, name ->
+            val turnover = when (i) {
+                0 -> 1250000.0; 1 -> 1180000.0; 2 -> 1420000.0; 3 -> 1350000.0
+                4 -> 1510000.0; 5 -> 1480000.0; 6 -> 1620000.0; 7 -> 1580000.0
+                8 -> 1450000.0; 9 -> 1390000.0; 10 -> 1680000.0; 11 -> 1720000.0
+                else -> 0.0
+            }
+            val expense = when (i) {
+                0 -> 980000.0; 1 -> 920000.0; 2 -> 1150000.0; 3 -> 1080000.0
+                4 -> 1210000.0; 5 -> 1160000.0; 6 -> 1280000.0; 7 -> 1250000.0
+                8 -> 1120000.0; 9 -> 1050000.0; 10 -> 1320000.0; 11 -> 1380000.0
+                else -> 0.0
+            }
+            MonthlySummary("$name $year", turnover, expense, turnover - expense)
+        }
+    }
+
+    fun getMonthlySummary(year: Int): List<MonthlySummary> = generateMonthlyData(year)
+
     fun getVouchers(): List<Voucher> = listOf(
         Voucher("v1", "2026-06-18", "Sales", "INV-001", 0.0, 50000.0, status = "Approved", party = "ABC Enterprises", narration = "Sales of building materials"),
         Voucher("v2", "2026-06-17", "Payment", "PMT-001", 25000.0, 0.0, status = "Approved", party = "XYZ Suppliers", narration = "Payment for purchase invoice"),

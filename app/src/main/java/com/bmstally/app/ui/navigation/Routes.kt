@@ -21,6 +21,9 @@ object Routes {
     const val VOUCHER_LIST = "voucher_list"
     const val VOUCHER_CREATE = "voucher_create"
     const val ORDER_LIST = "order_list"
+    const val MONTHLY_SUMMARY = "monthly_summary"
+    const val ADMIN_DASHBOARD = "admin_dashboard"
+    const val REQUEST_MESSAGE = "request_message"
 
     // Drawer pages
     const val COMPANIES = "companies"

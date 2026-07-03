@@ -196,6 +196,23 @@ fun BmsTallyNavHost() {
             )
         }
 
+        composable(Routes.MONTHLY_SUMMARY) {
+            MonthlySummaryScreen(
+                onBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(Routes.ADMIN_DASHBOARD) {
+            AdminDashboardScreen(
+                tenantId = tenantId,
+                onBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(Routes.REQUEST_MESSAGE) {
+            RequestMessageScreen(onBack = { navController.popBackStack() })
+        }
+
         composable(Routes.VOUCHER_LIST) {
             VoucherListScreen(
                 onBack = { navController.popBackStack() },

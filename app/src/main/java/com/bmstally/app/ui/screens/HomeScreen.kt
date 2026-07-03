@@ -86,10 +86,13 @@ fun HomeScreen(
                     NavDrawerItem(Icons.Default.AccountBalance, "Ledgers") { onNavigate(Routes.LEDGER_LIST); scope.launch { drawerState.close() } }
                     NavDrawerItem(Icons.Default.Receipt, "Vouchers") { onNavigate(Routes.VOUCHER_LIST); scope.launch { drawerState.close() } }
                     NavDrawerItem(Icons.Default.ShoppingCart, "Order Book") { onNavigate(Routes.ORDER_LIST); scope.launch { drawerState.close() } }
+                    NavDrawerItem(Icons.Default.Assessment, "Monthly Summary") { onNavigate(Routes.MONTHLY_SUMMARY); scope.launch { drawerState.close() } }
+                    NavDrawerItem(Icons.Default.AdminPanelSettings, "Admin Dashboard") { onNavigate(Routes.ADMIN_DASHBOARD); scope.launch { drawerState.close() } }
                     NavDrawerItem(Icons.Default.Business, "Companies") { onNavigate(Routes.COMPANIES); scope.launch { drawerState.close() } }
                     NavDrawerItem(Icons.Default.Group, "Users", showDot = true) { onNavigate(Routes.USERS); scope.launch { drawerState.close() } }
                     NavDrawerItem(Icons.Default.Settings, "Settings") { onNavigate(Routes.SETTINGS); scope.launch { drawerState.close() } }
                     NavDrawerItem(Icons.Default.People, "Refer a Friend") { scope.launch { drawerState.close() } }
+                    NavDrawerItem(Icons.Default.ForwardToInbox, "Request to Admin") { onNavigate(Routes.REQUEST_MESSAGE); scope.launch { drawerState.close() } }
                     NavDrawerItem(
                         icon = Icons.Default.AccountBalanceWallet, label = "Wallet",
                         trailing = {

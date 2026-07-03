@@ -171,6 +171,11 @@ class BmsRepository @Inject constructor(
         mockData.getLedgerAgeing(ledgerGuid)
 
     fun getOrders(): List<Order> = mockData.getOrders()
+    fun getMonthlySummary(year: Int): List<MonthlySummary> = mockData.getMonthlySummary(year)
+    fun getDeleteHistory(): List<DeleteHistoryRecord> = mockData.getDeleteHistory()
+    fun restoreDeleteHistory(id: Int): Boolean = mockData.restoreDeleteHistory(id)
+    fun getRequests(): List<UserRequest> = mockData.getRequests()
+    fun sendRequest(message: String): UserRequest = mockData.sendRequest(message)
 
     fun getVouchers(): List<Voucher> = mockData.getVouchers()
 
